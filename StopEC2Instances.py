@@ -10,16 +10,12 @@ def lambda_handler(event, context):
     instances = ec2.describe_instances(
         Filters=[
             {
-                'Name': 'tag-key',
-                'Values':[ 'stop_out_of_hours'],
-                'Name': 'tag-value',
-                'Values':[ 'true']
+                'Name': 'tag:stop_out_of_hours',
+                'Values':[ 'true'],
             },
             {
-                'Name': 'tag-key',
-                'Values':[ 'role'],
-                'Name': 'tag-value',
-                'Values':[ 'ADS', 'FS', 'RAPPRI', 'RMQPRI', 'RMQSEC']
+                'Name': 'role',
+                'Values':[ 'ADS', 'FS', 'PRI', 'RMQPRI', 'RMQSEC']
             }
         ],
     )
@@ -27,16 +23,12 @@ def lambda_handler(event, context):
     dbs_primary_instances = ec2.describe_instances(
         Filters=[
             {
-                'Name': 'tag-key',
-                'Values':[ 'stop_out_of_hours'],
-                'Name': 'tag-value',
-                'Values':[ 'true']
+                'Name': 'tag:stop_out_of_hours',
+                'Values':[ 'true'],
             },
             {
-                'Name': 'tag-key',
-                'Values':[ 'role'],
-                'Name': 'tag-value',
-                'Values':[ 'DBSPRI']
+                'Name': 'role',
+                'Values':[ 'DBSPRI'],
             }
         ],
     )
@@ -44,15 +36,11 @@ def lambda_handler(event, context):
     dbs_secondary_instances = ec2.describe_instances(
         Filters=[
             {
-                'Name': 'tag-key',
-                'Values':[ 'stop_out_of_hours'],
-                'Name': 'tag-value',
-                'Values':[ 'true']
+                'Name': 'tag:stop_out_of_hours',
+                'Values':[ 'true'],
             },
             {
-                'Name': 'tag-key',
-                'Values':[ 'role'],
-                'Name': 'tag-value',
+                'Name': 'role',
                 'Values':[ 'DBSSEC']
             }
         ],
@@ -100,10 +88,8 @@ def lambda_handler(event, context):
     asgs = asg.describe_tags(
         Filters=[
             {
-                'Name': 'key',
-                'Values':[ 'stop_out_of_hours'],
-                'Name': 'value',
-                'Values':[ 'true']
+                'Name': 'tag:stop_out_of_hours',
+                'Values':[ 'true'],
             },
         ],
     )
