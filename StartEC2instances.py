@@ -102,14 +102,14 @@ def lambda_handler(event, context):
         asg_ids.append(ResourceID)
 
     for asg_id in asg_ids:
-        if asg_id == "SS-JENKINSSLAVESSECS-MGMT-ASG-JenkinsSlavesAsg-6Q622MQD9HJF":
+        if asg_id == "ASG-ID":
             response = asg.update_auto_scaling_group(
                 AutoScalingGroupName=asg_id,
                 MinSize=1,
                 MaxSize=2,
                 DesiredCapacity=1
             )
-        elif asg_id == "SmartShopR10-VNP-asg-1-RapAsg-K4AA2EGEY5DQ":
+        elif asg_id == "ASG-ID":
             response = asg.update_auto_scaling_group(
                 AutoScalingGroupName=asg_id,
                 MinSize=6,
